@@ -1,0 +1,16 @@
+name: Greetings # remove the name then we will have the path of action, instead of name
+
+on: [pull_request_target, issues] # github events
+
+jobs:
+  greeting: # name of the action
+    runs-on: ubuntu-latest # runner
+    permissions: # permission on the runner
+      issues: write
+      pull-requests: write
+    steps: # Actual steps on this job
+    - uses: actions/first-interaction@v1 # just a repo being called 
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "Message that will be displayed on users' first issue"
+        pr-message: "Message that will be displayed on users' first pull request"
